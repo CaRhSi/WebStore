@@ -19,7 +19,32 @@
   align-items: center;
 }
 
+.productWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
 .buttonWrapper:hover {
   background-color: #000;
   color: #fff;
+}
+
+.numberOfItems {
+  position: absolute;
+  top: 0;
+  right: 5%;
+
+  height: 30px;
+  width: 30px;
+
+  background-color: red;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  font-size: 20px;
 }

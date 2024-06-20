@@ -1,0 +1,17 @@
+.card {
+    width: 18rem;
+    margin: 0px 5px;
+  } 
+  footer {
+    background-color: #9b9b9b;
+  }  
+  
+  .navbar {
+    background-color: hsl(300, 2%, 65%);
+  }
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
