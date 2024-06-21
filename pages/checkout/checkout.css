@@ -1,0 +1,45 @@
+.container {
+    margin-top: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.item-name {
+    flex: 2;
+    font-weight: bold;
+}
+
+.item-quantity,
+.item-price,
+.item-total {
+    flex: 1;
+    text-align: right;
+}
+
+.btn {
+    margin-left: 10px;
+}
+
+.total-price {
+    text-align: right;
+    margin-top: 20px;
+}
+
+#payment-details {
+    margin-top: 40px;
+}
+
+#payment-details .form-label {
+    font-weight: bold;
+}
