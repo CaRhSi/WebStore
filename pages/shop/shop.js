@@ -16,30 +16,31 @@ $(document).ready(() => {
   // Load shoppingCart.html
   $("#shoppingCart").load("/template/shoppingCart/shoppingCart.html");
   
-  // Attach click event listener to .add-to-cart buttons
+  // Ensure click event listener is attached only once
   $(document).off('click', '.add-to-cart').on('click', '.add-to-cart', function(event) {
-    event.stopPropagation(); // Prevent the card click event from triggering
-    console.log('Add to cart button clicked');
+      event.stopPropagation(); // Prevent the card click event from triggering
+      console.log('Add to cart button clicked');
 
-    let products = [];
+      let products = [];
 
-    // Populate the products array with the current product's info
-    if (localStorage.getItem("items")) {
-        products = JSON.parse(localStorage.getItem("items"));
-    }
+      // Populate the products array with the current product's info
+      if (localStorage.getItem("items")) {
+          products = JSON.parse(localStorage.getItem("items"));
+      }
 
-    const itemElement = $(this).siblings(".card-body").find(".card-text").text(); // Supreme Goblin$150
-    const itemName = itemElement.split("$")[0].trim(); // Supreme Goblin
-    const itemPrice = itemElement.split("$")[1].trim(); // 150
+      const itemElement = $(this).siblings(".card-body").find(".card-text").text(); // Supreme Goblin$150
+      const itemName = itemElement.split("$")[0].trim(); // Supreme Goblin
+      const itemPrice = itemElement.split("$")[1].trim(); // 150
+      const itemImage = $(this).siblings(".card-img-top").attr("src"); // Get the image source URL
 
-    // Check if the item is already in the cart
-    let itemExists = false;
-    products.forEach((product) => {
-        if (product.name === itemName) {
-            itemExists = true;
-            product.quantity += 1;
-        }
-    });
+      // Check if the item is already in the cart
+      let itemExists = false;
+      products.forEach((product) => {
+          if (product.name === itemName) {
+              itemExists = true;
+              product.quantity += 1;
+          }
+      });
 
       // If the item is not in the cart, add it to the cart
       if (!itemExists) {
@@ -47,6 +48,7 @@ $(document).ready(() => {
               name: itemName,
               price: itemPrice,
               quantity: 1,
+              image: itemImage // Store the image URL
           });
       }
 

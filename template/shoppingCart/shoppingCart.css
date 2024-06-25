@@ -3,17 +3,17 @@
   z-index: 2;
   bottom: 5%;
   right: 5%;
-
+  
   border-radius: 50%;
   background-color: #fff;
   border: 1px solid #000;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
-
+  
   width: 100px;
   height: 100px;
-
+  
   cursor: pointer;
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,46 @@
 .productWrapper {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item-img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+#productInfo {
+  flex: 2;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.quantity {
+  text-align: left;
+}
+
+.subtotal {
+  text-align: left;
+  font-weight: bold;
+}
+
+#actions {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  margin-left: 10px;
+}
+
+.btn:disabled {
+  background-color: grey;
+  cursor: not-allowed;
 }
 
 .buttonWrapper:hover {
@@ -34,17 +73,36 @@
   position: absolute;
   top: 0;
   right: 5%;
-
+  
   height: 30px;
   width: 30px;
-
+  
   background-color: red;
   border-radius: 50%;
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
-
+  
   color: #fff;
   font-size: 20px;
+}
+
+.totalWrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.totalLabel {
+  flex: 1;
+  text-align: left;
+}
+
+.totalPrice {
+  flex: 1;
+  text-align: right;
 }
