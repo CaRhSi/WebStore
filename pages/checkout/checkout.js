@@ -1,6 +1,22 @@
 $(document).ready(() => {
     // Initialize EmailJS
-    emailjs.init("YOUR_EMAILJS_USER_ID");
+    emailjs.init("Zj83Kg4XZnwThmE5-");
+
+    // Firebase configuration object
+    const firebaseConfig = {
+        apiKey: "AIzaSyBPvdVJAph50jH4EkJavdfPb-UblLFSyH0",
+        authDomain: "goblin-webstore.firebaseapp.com",
+        databaseURL: "https://goblin-webstore-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "goblin-webstore",
+        storageBucket: "goblin-webstore.appspot.com",
+        messagingSenderId: "721366070888",
+        appId: "1:721366070888:web:b6b606ed0398e4c3406ddd",
+        measurementId: "G-ZSGTC2GD0S"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
 
     // Load header and footer
     $("#header").load("/template/header/header.html", () => {
@@ -152,9 +168,35 @@ function validateForm() {
         }));
         const totalPrice = items.reduce((total, item) => total + parseFloat(item.subtotal), 0).toFixed(2);
 
+        // Save order to Firebase
+        saveOrderToFirebase(firstName, lastName, email, phone, address, cardLast4, items, totalPrice);
+
+        // Send confirmation email
         sendConfirmationEmail(email, firstName, lastName, phone, address, cardLast4, items, totalPrice);
+
         alert("Form submitted successfully!");
     }
+}
+
+function saveOrderToFirebase(firstName, lastName, email, phone, address, cardLast4, items, totalPrice) {
+    const orderData = {
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        cardLast4,
+        items,
+        totalPrice,
+        orderDate: new Date().toISOString()
+    };
+
+    const newOrderKey = firebase.database().ref().child('orders').push().key;
+
+    let updates = {};
+    updates['/orders/' + newOrderKey] = orderData;
+
+    return firebase.database().ref().update(updates);
 }
 
 function sendConfirmationEmail(email, firstName, lastName, phone, address, cardLast4, items, totalPrice) {
